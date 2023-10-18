@@ -20,7 +20,6 @@ func NewServiceLogin(rl repocontract.RepoLogin, ru repocontract.RepoUser) servic
 	}
 }
 
-// LoginAdmin implements servicecontract.ServiceLogin.
 func (sl *ServiceLogin) LoginAdmin(email string, password string) (string, request.RequestUser, error) {
 	if email == "" || password == "" {
 		return "", request.RequestUser{}, errors.New("inputan tidak boleh kosong")
@@ -43,7 +42,6 @@ func (sl *ServiceLogin) LoginAdmin(email string, password string) (string, reque
 	return token, datarepo, nil
 }
 
-// LoginUser implements servicecontract.ServiceLogin.
 func (sl *ServiceLogin) LoginUser(email string, password string) (string, request.RequestUser, error) {
 	if email == "" || password == "" {
 		return "", request.RequestUser{}, errors.New("inputan tidak boleh kosong")

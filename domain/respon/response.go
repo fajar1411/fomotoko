@@ -19,3 +19,10 @@ type ResponseBarang struct {
 	Stok       int    `json:"stok"`
 	Harga      string `json:"harga"`
 }
+type ResponOrder struct {
+	NamaBarang string `json:"nama_barang"`
+	qty        int    `json:"qty"`
+	Harga      string `json:"harga_satuan"`
+	Status     string `json:"status"`
+	TotalOrder string `json:"total_harga"`
+}

@@ -31,7 +31,6 @@ func (hu *HandlerUser) RegisterAdmin(e echo.Context) error {
 	}
 
 	data, errservice := hu.um.RegisterAdmin(requestRegister)
-	// fmt.Print("ini data handler", data)
 
 	if errservice != nil {
 		return e.JSON(http.StatusInternalServerError, helper.GetResponse(errservice.Error(), http.StatusInternalServerError, true))
@@ -50,7 +49,6 @@ func (hu *HandlerUser) RegisterUser(e echo.Context) error {
 	}
 
 	data, errservice := hu.um.RegisterUser(requestRegister)
-	// fmt.Print("ini data handler", data)
 
 	if errservice != nil {
 		return e.JSON(http.StatusInternalServerError, helper.GetResponse(errservice.Error(), http.StatusInternalServerError, true))

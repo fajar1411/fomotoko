@@ -21,7 +21,6 @@ func NewHandlLogin(sl servicecontract.ServiceLogin) handlecontract.HandleLogin {
 	}
 }
 
-// LoginAdmin implements handlecontract.HandleLogin.
 func (hl *HandlerLogin) LoginAdmin(e echo.Context) error {
 	reques := request.RequestUser{}
 
@@ -41,7 +40,6 @@ func (hl *HandlerLogin) LoginAdmin(e echo.Context) error {
 
 }
 
-// LoginUser implements handlecontract.HandleLogin.
 func (hl *HandlerLogin) LoginUser(e echo.Context) error {
 	reques := request.RequestUser{}
 

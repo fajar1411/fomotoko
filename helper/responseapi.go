@@ -7,7 +7,6 @@ type Response struct {
 	Status  string `json:"status"`
 	IsError bool   `json:"isError"`
 	Data    any    `json:"data"`
-	// Description string `json:"desc"`
 }
 
 func GetResponse(data any, code int, isError bool) *Response {

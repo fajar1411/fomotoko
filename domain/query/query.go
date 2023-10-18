@@ -106,3 +106,32 @@ func ModeltoReqBarang(data model.Barang) request.RequestBarang {
 		Harga:      data.Harga,
 	}
 }
+func ReqtoResponOrder(data request.RequestOrder) respon.ResponOrder {
+	return respon.ResponOrder{
+
+		NamaBarang: data.NamaBarang,
+		Harga:      data.Harga,
+		Status:     data.Status,
+		TotalOrder: data.TotalOrder,
+	}
+}
+func ReqtoModelorder(data request.RequestOrder) model.OrderBarang {
+	return model.OrderBarang{
+		NamaBarang: data.NamaBarang,
+		Harga:      data.Harga,
+		TotalOrder: data.TotalOrder,
+		Status:     data.Status,
+		UserId:     data.UserId,
+		BarangID:   data.BarangId,
+	}
+}
+func Modeltoreqorder(data model.OrderBarang) request.RequestOrder {
+	return request.RequestOrder{
+		NamaBarang: data.NamaBarang,
+		Harga:      data.Harga,
+		TotalOrder: data.TotalOrder,
+		Status:     data.Status,
+		UserId:     data.UserId,
+		BarangId:   data.BarangID,
+	}
+}
