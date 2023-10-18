@@ -83,7 +83,6 @@ func (ru *RepoUser) RegisterUser(newRequest request.RequestUser) (data request.R
 	return datamodeltoreq, nil
 }
 
-// AllAdmin implements repocontract.RepoUser.
 func (ru *RepoUser) AllAdmin() (data []request.RequestUser, err error) {
 	var activ []model.Admin
 	tx := ru.db.Raw("Select admins.id, admins.password, admins.email,admins.nama, admins.roles from admins").Find(&activ)
@@ -94,7 +93,6 @@ func (ru *RepoUser) AllAdmin() (data []request.RequestUser, err error) {
 	return dtmdlttoreq, nil
 }
 
-// AllUser implements repocontract.RepoUser.
 func (ru *RepoUser) AllUser() (data []request.RequestUser, err error) {
 	var activ []model.User
 	tx := ru.db.Raw("Select users.id, users.password, users.email,users.nama from users").Find(&activ)
@@ -105,7 +103,6 @@ func (ru *RepoUser) AllUser() (data []request.RequestUser, err error) {
 	return dtmdlttoreq, nil
 }
 
-// EmailadminExist implements repocontract.RepoUser.
 func (ru *RepoUser) EmailadminExist(email string) (data request.RequestUser, err error) {
 	var activ model.Admin
 
@@ -119,7 +116,6 @@ func (ru *RepoUser) EmailadminExist(email string) (data request.RequestUser, err
 	return activcore, nil
 }
 
-// EmaiuserExist implements repocontract.RepoUser.
 func (ru *RepoUser) EmaiuserExist(email string) (data request.RequestUser, err error) {
 	var activ model.User
 

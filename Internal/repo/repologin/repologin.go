@@ -15,7 +15,6 @@ type Repologin struct {
 	db *gorm.DB
 }
 
-// Login implements repocontract.RepoLogin.
 func (*Repologin) Login(email string, password string) (string, request.RequestUser, error) {
 	panic("unimplemented")
 }

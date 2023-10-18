@@ -15,5 +15,5 @@ type ServiceBarang interface {
 	AddBarang(newreq request.RequestBarang) (data request.RequestBarang, err error)
 }
 type ServiceOrder interface {
-	AddOrder(Id int, newreq request.RequestOrder) (data request.RequestOrder, err error)
+	AddOrder(userid int, Id int, newreq request.RequestOrder) (data request.RequestOrder, err error)
 }

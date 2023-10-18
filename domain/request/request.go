@@ -24,10 +24,12 @@ type RequestBarang struct {
 type RequestOrder struct {
 	Id         int
 	NamaBarang string
-	qty        int `json:"qty" form:"qty" validate:"required"`
+	Quantity   int `json:"qty" form:"qty" validate:"required"`
 	Harga      string
 	Status     string
 	TotalOrder string
+	UserId     int
+	BarangId   int
 	CreatedAt  time.Time
 	DeletedAt  time.Time
 	UpdateAt   time.Time
