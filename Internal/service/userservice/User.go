@@ -7,7 +7,6 @@ import (
 	"test/domain/contract/servicecontract"
 	"test/domain/request"
 	"test/validasi"
-	"time"
 
 	"github.com/go-playground/validator"
 )
@@ -24,19 +23,17 @@ func NewServiceUser(ru repocontract.RepoUser) servicecontract.ServiceCase {
 	}
 }
 
-func (sc *ServicesCase) RegisterAdmin(newRequest request.RequestUser) (data request.RequestUser, err error) {
+func (sc *ServicesCase) RegisterUser(newRequest request.RequestUser) (data request.RequestUser, err error) {
 	validerr := sc.validate.Struct(newRequest)
 	if validerr != nil {
 
 		return request.RequestUser{}, errors.New(validasi.ValidationErrorHandle(validerr))
 	}
-	newRequest.CreatedAt = time.Now()
+
 	haspw := bycripts.Bcript(newRequest.Password)
 	newRequest.Password = haspw
 
-	newRequest.Role = "admin"
-
-	datarepo, errrepo := sc.ru.RegisterAdmin(newRequest)
+	datarepo, errrepo := sc.ru.RegisterUser(newRequest)
 
 	if errrepo != nil {
 		return request.RequestUser{}, errors.New(errrepo.Error())
@@ -45,20 +42,12 @@ func (sc *ServicesCase) RegisterAdmin(newRequest request.RequestUser) (data requ
 	return datarepo, nil
 }
 
-func (sc *ServicesCase) RegisterUser(newRequest request.RequestUser) (data request.RequestUser, err error) {
-	validerr := sc.validate.Struct(newRequest)
-	if validerr != nil {
-
-		return request.RequestUser{}, errors.New(validasi.ValidationErrorHandle(validerr))
-	}
-	newRequest.CreatedAt = time.Now()
-	haspw := bycripts.Bcript(newRequest.Password)
-	newRequest.Password = haspw
-
-	datarepo, errrepo := sc.ru.RegisterUser(newRequest)
+// AllUser implements servicecontract.ServiceCase.
+func (sc *ServicesCase) AllUser() (data []request.RequestUser, err error) {
+	datarepo, errrepo := sc.ru.AllUser()
 
 	if errrepo != nil {
-		return request.RequestUser{}, errors.New(errrepo.Error())
+		return []request.RequestUser{}, errors.New(errrepo.Error())
 	}
 
 	return datarepo, nil

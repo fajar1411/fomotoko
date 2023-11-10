@@ -1,36 +1,14 @@
 package request
 
-import "time"
-
 type RequestUser struct {
-	Id        int
-	Role      string
-	Password  string `json:"password" form:"password" validate:"required,min=5"`
-	Email     string `json:"email" form:"email" validate:"required,email"`
-	Name      string `json:"nama" form:"nama" validate:"required,min=5"`
-	CreatedAt time.Time
-	DeletedAt time.Time
-	UpdateAt  time.Time
+	Id       int
+	Password string `json:"password" form:"password" validate:"required,min=5"`
+	Email    string `json:"email" form:"email" validate:"required,email"`
+	Name     string `json:"nama" form:"nama" validate:"required,min=5"`
 }
-type RequestBarang struct {
+type RequestBank struct {
 	Id         int
-	NamaBarang string `json:"nama_barang" form:"nama_barang" validate:"required,min=5"`
-	Stok       int    `json:"stok" form:"stok" validate:"required"`
-	Harga      string `json:"harga" form:"harga" validate:"required,min=5"`
-	CreatedAt  time.Time
-	DeletedAt  time.Time
-	UpdateAt   time.Time
-}
-type RequestOrder struct {
-	Id         int
-	NamaBarang string
-	Quantity   int `json:"qty" form:"qty" validate:"required"`
-	Harga      string
-	Status     string
-	TotalOrder string
-	UserId     int
-	BarangId   int
-	CreatedAt  time.Time
-	DeletedAt  time.Time
-	UpdateAt   time.Time
+	NoRekening string `json:"no_rekening" form:"no_rekening" validate:"required,min=8"`
+	NamaBank   string `json:"nama_bank" form:"nama_bank" validate:"required,min=3"`
+	IDPlayer   uint
 }
