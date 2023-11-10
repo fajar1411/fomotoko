@@ -6,132 +6,74 @@ import (
 	"test/domain/respon"
 )
 
-func RequadminToModel(data request.RequestUser) model.Admin {
-	return model.Admin{
-		Id:        data.Id,
-		Roles:     data.Role,
-		Email:     data.Email,
-		Nama:      data.Name,
-		Password:  data.Password,
-		CreatedAt: data.CreatedAt,
-	}
-}
 func RequuserToModel(data request.RequestUser) model.User {
 	return model.User{
-		Id:        data.Id,
-		Email:     data.Email,
-		Nama:      data.Name,
-		Password:  data.Password,
-		CreatedAt: data.CreatedAt,
-	}
-}
-func ModelusertoReq(data model.User) request.RequestUser {
-	return request.RequestUser{
-		Id:        data.Id,
-		Email:     data.Email,
-		Name:      data.Nama,
-		Password:  data.Password,
-		CreatedAt: data.CreatedAt,
-	}
-}
 
-func ModeltoReq(data model.Admin) request.RequestUser {
+		Email:    data.Email,
+		Nama:     data.Name,
+		Password: data.Password,
+	}
+}
+func ModelusertoReq(data *model.User) request.RequestUser {
 	return request.RequestUser{
-		Id:        data.Id,
-		Role:      data.Roles,
-		Email:     data.Email,
-		Name:      data.Nama,
-		Password:  data.Password,
-		CreatedAt: data.CreatedAt,
+		Email:    data.Email,
+		Name:     data.Nama,
+		Password: data.Password,
+		Id:       int(data.ID),
 	}
 }
 
 func ReqtoRepon(data request.RequestUser) respon.ResponseUser {
 	return respon.ResponseUser{
-		Id:        data.Id,
-		Role:      data.Role,
-		Email:     data.Email,
-		Name:      data.Name,
-		Password:  data.Password,
-		CreatedAt: data.CreatedAt,
+		Id:       data.Id,
+		Email:    data.Email,
+		Name:     data.Name,
+		Password: data.Password,
 	}
 }
 
-func ReqtoResponLogin(data request.RequestUser, token string) respon.ResponseUser {
-	return respon.ResponseUser{
-		Id:        data.Id,
-		Role:      data.Role,
-		Email:     data.Email,
-		Name:      data.Name,
-		Token:     token,
-		Password:  data.Password,
-		CreatedAt: data.CreatedAt,
+func ReqtoResponLogin(data request.RequestUser, token string) respon.ResponseLogin {
+	return respon.ResponseLogin{
+
+		Email:    data.Email,
+		Name:     data.Name,
+		Token:    token,
+		Password: data.Password,
 	}
 }
-func ListModelToReq(data []model.Admin) (datareq []request.RequestUser) {
-	for _, val := range data {
-		datareq = append(datareq, ModeltoReq(val))
-	}
-	return datareq
-}
+
 func ListModeluserToReq(data []model.User) (datareq []request.RequestUser) {
 	for _, val := range data {
-		datareq = append(datareq, ModelusertoReq(val))
+		datareq = append(datareq, ModelusertoReq(&val))
 	}
 	return datareq
 }
-
-func ReqtoResponBarang(data request.RequestBarang) respon.ResponseBarang {
-	return respon.ResponseBarang{
-
-		NamaBarang: data.NamaBarang,
-		Stok:       data.Stok,
-		Harga:      data.Harga,
+func ListrequserToRes(data []request.RequestUser) (datareq []respon.ResponseUser) {
+	for _, val := range data {
+		datareq = append(datareq, ReqtoRepon(val))
+	}
+	return datareq
+}
+func ReqtoReponbank(data request.RequestBank) respon.ResponBank {
+	return respon.ResponBank{
+		NoRekening: data.NoRekening,
+		NamaBank:   data.NamaBank,
+		IDPlayer:   data.IDPlayer,
 	}
 }
+func RequesbankToModel(data request.RequestBank) model.Bank {
+	return model.Bank{
 
-func ReqtoModelBarang(data request.RequestBarang) model.Barang {
-	return model.Barang{
-
-		NamaBarang: data.NamaBarang,
-		Stok:       data.Stok,
-		Harga:      data.Harga,
+		NoRekening: data.NoRekening,
+		NamaBank:   data.NamaBank,
+		IDPlayer:   data.IDPlayer,
 	}
 }
-func ModeltoReqBarang(data model.Barang) request.RequestBarang {
-	return request.RequestBarang{
-
-		NamaBarang: data.NamaBarang,
-		Stok:       data.Stok,
-		Harga:      data.Harga,
-	}
-}
-func ReqtoResponOrder(data request.RequestOrder) respon.ResponOrder {
-	return respon.ResponOrder{
-
-		NamaBarang: data.NamaBarang,
-		Harga:      data.Harga,
-		Status:     data.Status,
-		TotalOrder: data.TotalOrder,
-	}
-}
-func ReqtoModelorder(data request.RequestOrder) model.OrderBarang {
-	return model.OrderBarang{
-		NamaBarang: data.NamaBarang,
-		Harga:      data.Harga,
-		TotalOrder: data.TotalOrder,
-		Status:     data.Status,
-		UserId:     data.UserId,
-		BarangID:   data.BarangId,
-	}
-}
-func Modeltoreqorder(data model.OrderBarang) request.RequestOrder {
-	return request.RequestOrder{
-		NamaBarang: data.NamaBarang,
-		Harga:      data.Harga,
-		TotalOrder: data.TotalOrder,
-		Status:     data.Status,
-		UserId:     data.UserId,
-		BarangId:   data.BarangID,
+func ModelbanktoReq(data *model.Bank) request.RequestBank {
+	return request.RequestBank{
+		Id:         int(data.ID),
+		NoRekening: data.NoRekening,
+		NamaBank:   data.NamaBank,
+		IDPlayer:   data.IDPlayer,
 	}
 }

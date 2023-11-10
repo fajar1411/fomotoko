@@ -1,46 +1,36 @@
 package model
 
 import (
-	"time"
-
 	"gorm.io/gorm"
 )
 
 type User struct {
-	Id        int
-	Password  string
-	Email     string
-	Nama      string
-	CreatedAt time.Time
-	DeletedAt time.Time
-	UpdateAt  time.Time
+	gorm.Model
+	Password string
+	Email    string
+	Nama     string
+	Bank     []Bank  `gorm:"foreignKey:IDPlayer;references:ID"`
+	TopUp    []TopUp `gorm:"foreignKey:IDPlayer;references:ID"`
+	Wallet   Wallet  `gorm:"foreignKey:IDPlayer;references:ID"`
 }
 
-type Admin struct {
-	Id        int
-	Password  string
-	Email     string
-	Nama      string
-	Roles     string
-	CreatedAt time.Time
-	DeletedAt time.Time
-	UpdateAt  time.Time
-}
-
-type Barang struct {
+type Bank struct {
 	gorm.Model
-	NamaBarang string
-	Stok       int
-	Harga      string
+	NoRekening string
+	NamaBank   string
+	IDPlayer   uint
+	TopUp      []TopUp `gorm:"foreignKey:IDBank;references:ID"`
 }
-type OrderBarang struct {
+type Wallet struct {
 	gorm.Model
-	NamaBarang string
-	qty        int
-	Harga      string
-	TotalOrder string
-	Status     string
-	UserId     int
-	BarangID   int
-	// Barangs    []Barang
+	Saldo    float64
+	IDPlayer uint
+}
+type TopUp struct {
+	gorm.Model
+	Saldo    float64
+	IDBank   uint
+	IDWallet uint
+	IDPlayer uint
+	// Wallet   []Wallet `gorm:"foreignKey:IDWallet;references:ID"`
 }
