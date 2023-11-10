@@ -14,6 +14,10 @@ import (
 	rb "test/internal/repo/repobank"
 	bs "test/internal/service/bankservice"
 
+	wh "test/internal/handler/wallethandler"
+	rw "test/internal/repo/repowallet"
+	ws "test/internal/service/walletservice"
+
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
@@ -40,5 +44,11 @@ func FaktoryAndRoute(e *echo.Echo, db *gorm.DB) {
 	bankgrup := e.Group("/player")
 
 	bankgrup.POST("/addbank", handlebank.CreateBank, middlewares.JWTMiddleware())
+	rpw := rw.NewRepoWallet(db)
+	servicewallet := ws.NewServiceWallet(rpm, rpw)
+	handlewallet := wh.NewHandleWallet(servicewallet)
+	walletgrup := e.Group("/player")
+
+	walletgrup.POST("/addwallet", handlewallet.CreateWallet, middlewares.JWTMiddleware())
 
 }

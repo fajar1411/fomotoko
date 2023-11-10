@@ -13,3 +13,6 @@ type ServiceLogin interface {
 type ServiceBank interface {
 	CreateBank(newRequest request.RequestBank, email string) (data request.RequestBank, err error)
 }
+type ServiceWallet interface {
+	CreateWallet(newRequest request.RequestWallet, email string) (data request.RequestWallet, err error)
+}

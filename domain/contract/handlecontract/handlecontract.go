@@ -14,3 +14,6 @@ type HandleLogin interface {
 type HandleBank interface {
 	CreateBank(e echo.Context) error
 }
+type HandleWallet interface {
+	CreateWallet(e echo.Context) error
+}

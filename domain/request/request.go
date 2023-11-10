@@ -12,3 +12,9 @@ type RequestBank struct {
 	NamaBank   string `json:"nama_bank" form:"nama_bank" validate:"required,min=3"`
 	IDPlayer   uint
 }
+type RequestWallet struct {
+	Id          int
+	Nama_dompet string  `json:"nama_dompet" form:"nama_dompet" validate:"required,min=8"`
+	Saldo       float64 `json:"saldo" form:"saldo"`
+	IDPlayer    uint
+}
