@@ -17,3 +17,9 @@ type ResponBank struct {
 	NamaBank   string `json:"nama_bank"`
 	IDPlayer   uint
 }
+type ResponWallet struct {
+	Id          int     `json:"dompet_id"`
+	Nama_dompet string  `json:"nama_dompet"`
+	Saldo       float64 `json:"saldo"`
+	IDPlayer    uint    `json:"player"`
+}

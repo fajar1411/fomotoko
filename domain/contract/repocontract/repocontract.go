@@ -15,3 +15,7 @@ type RepoBank interface {
 	NorekExist(no string) (data request.RequestBank, err error)
 	IduserExist(iduser int) (data request.RequestBank, err error)
 }
+type RepoWallet interface {
+	CreateWallet(newRequest request.RequestWallet) (data request.RequestWallet, err error)
+	IduserExist(iduser int) (data request.RequestWallet, err error)
+}

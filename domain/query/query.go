@@ -77,3 +77,27 @@ func ModelbanktoReq(data *model.Bank) request.RequestBank {
 		IDPlayer:   data.IDPlayer,
 	}
 }
+func ReqtoReponwallet(data request.RequestWallet) respon.ResponWallet {
+	return respon.ResponWallet{
+		Id:          data.Id,
+		Nama_dompet: data.Nama_dompet,
+		Saldo:       data.Saldo,
+		IDPlayer:    data.IDPlayer,
+	}
+}
+func RequeswalletToModel(data request.RequestWallet) model.Wallet {
+	return model.Wallet{
+
+		NamaDompet: data.Nama_dompet,
+		Saldo:      data.Saldo,
+		IDPlayer:   data.IDPlayer,
+	}
+}
+func ModelwallettoReq(data *model.Wallet) request.RequestWallet {
+	return request.RequestWallet{
+		Id:          int(data.ID),
+		Nama_dompet: data.NamaDompet,
+		Saldo:       data.Saldo,
+		IDPlayer:    data.IDPlayer,
+	}
+}

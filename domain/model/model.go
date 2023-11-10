@@ -12,6 +12,7 @@ type User struct {
 	Bank     []Bank  `gorm:"foreignKey:IDPlayer;references:ID"`
 	TopUp    []TopUp `gorm:"foreignKey:IDPlayer;references:ID"`
 	Wallet   Wallet  `gorm:"foreignKey:IDPlayer;references:ID"`
+	// Wallet   []Wallet `gorm:"foreignKey:IDPlayer;references:ID"`
 }
 
 type Bank struct {
@@ -23,14 +24,16 @@ type Bank struct {
 }
 type Wallet struct {
 	gorm.Model
-	Saldo    float64
-	IDPlayer uint
+	NamaDompet string
+	Saldo      float64
+	IDPlayer   uint
 }
 type TopUp struct {
 	gorm.Model
-	Saldo    float64
-	IDBank   uint
-	IDWallet uint
-	IDPlayer uint
+	Saldo      float64
+	IDBank     uint
+	IDWallet   uint
+	IDPlayer   uint
+	NamaDompet string
 	// Wallet   []Wallet `gorm:"foreignKey:IDWallet;references:ID"`
 }
