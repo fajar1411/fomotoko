@@ -16,3 +16,7 @@ type ServiceBank interface {
 type ServiceWallet interface {
 	CreateWallet(newRequest request.RequestWallet, email string) (data request.RequestWallet, err error)
 }
+type ServiceTopUp interface {
+	CreateTopUp(newRequest request.RequestTopUp, email string) (data request.RequestTopUp, err error)
+	CreatePayment(newRequest request.RequestTopUp) (data request.RequestTopUp, err error)
+}

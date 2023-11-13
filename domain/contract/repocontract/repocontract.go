@@ -19,3 +19,7 @@ type RepoWallet interface {
 	CreateWallet(newRequest request.RequestWallet) (data request.RequestWallet, err error)
 	IduserExist(iduser int) (data request.RequestWallet, err error)
 }
+type RepoTopUp interface {
+	CreateTopUp(newRequest request.RequestTopUp) (data request.RequestTopUp, err error)
+	CreatePayment(newRequest request.RequestTopUp) (data request.RequestTopUp, err error)
+}

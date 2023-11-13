@@ -17,3 +17,7 @@ type HandleBank interface {
 type HandleWallet interface {
 	CreateWallet(e echo.Context) error
 }
+type HandleTopUp interface {
+	CreateTopUp(e echo.Context) error
+	CreatePayment(e echo.Context) error
+}

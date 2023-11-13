@@ -29,6 +29,14 @@ func (hb *HandlerBank) CreateBank(e echo.Context) error {
 	if binderr != nil {
 		return e.JSON(http.StatusBadRequest, helper.GetResponse(binderr.Error(), http.StatusBadRequest, true))
 	}
+
+	// // Check the bank account using Midtrans API
+	// isValidBankAccount, errvalidbank := midtransClient.CheckBankAccount(RequestBank.NamaBank, RequestBank.NoRekening)
+	// // fmt.Print("bankaccoutn", isValidBankAccount)
+	// if errvalidbank != nil {
+	// 	return e.JSON(http.StatusInternalServerError, helper.GetResponse(errvalidbank.Error(), http.StatusInternalServerError, true))
+	// }
+	// RequestBank.NamaBank = isValidBankAccount
 	service, errservice := hb.sb.CreateBank(RequestBank, email)
 	if errservice != nil {
 		return e.JSON(http.StatusInternalServerError, helper.GetResponse(errservice.Error(), http.StatusInternalServerError, true))

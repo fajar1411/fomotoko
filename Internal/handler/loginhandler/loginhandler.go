@@ -39,7 +39,7 @@ func (hl *HandlerLogin) LoginUser(e echo.Context) error {
 		return e.JSON(http.StatusInternalServerError, helper.GetResponse(err.Error(), http.StatusInternalServerError, true))
 	}
 	if errservice != nil {
-		return e.JSON(http.StatusBadRequest, helper.GetResponse(errservice.Error(), http.StatusInternalServerError, true))
+		return e.JSON(http.StatusInternalServerError, helper.GetResponse(errservice.Error(), http.StatusInternalServerError, true))
 	}
 	e.Response().Header().Set("Authorization", token)
 	respon := query.ReqtoResponLogin(dataservice, token)

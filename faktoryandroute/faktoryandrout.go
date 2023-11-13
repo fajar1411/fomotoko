@@ -18,6 +18,10 @@ import (
 	rw "test/internal/repo/repowallet"
 	ws "test/internal/service/walletservice"
 
+	th "test/internal/handler/topuphandler"
+	rt "test/internal/repo/repotopup"
+	ts "test/internal/service/topupservice"
+
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
@@ -50,5 +54,11 @@ func FaktoryAndRoute(e *echo.Echo, db *gorm.DB) {
 	walletgrup := e.Group("/player")
 
 	walletgrup.POST("/addwallet", handlewallet.CreateWallet, middlewares.JWTMiddleware())
+	rpt := rt.NewRepoTopup(db)
+	servictopup := ts.NewServiceTopUp(rpt, rpm, rpw)
+	handletopup := th.NewHandleTopUp(servictopup)
+	topupgrup := e.Group("/player")
+
+	topupgrup.POST("/addtopup", handletopup.CreateTopUp, middlewares.JWTMiddleware())
 
 }
