@@ -52,3 +52,23 @@ func (sc *ServicesCase) AllUser() (data []request.RequestUser, err error) {
 
 	return datarepo, nil
 }
+
+// Player implements servicecontract.ServiceCase.
+func (sc *ServicesCase) Player(id int) (data request.ReqProfile, err error) {
+	data, err = sc.ru.Player(id)
+
+	if err != nil {
+		return data, err
+	}
+	return data, nil
+}
+
+// Filter implements servicecontract.ServiceCase.
+func (sc *ServicesCase) Filter(nama string, norek string) (data []request.ReqProfile, err error) {
+	datarepo, errrepo := sc.ru.Filter(nama, norek)
+
+	if err != nil {
+		return data, errrepo
+	}
+	return datarepo, nil
+}

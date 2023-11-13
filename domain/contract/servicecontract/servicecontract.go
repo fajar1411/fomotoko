@@ -5,6 +5,8 @@ import "test/domain/request"
 type ServiceCase interface {
 	RegisterUser(newRequest request.RequestUser) (data request.RequestUser, err error)
 	AllUser() (data []request.RequestUser, err error)
+	Player(id int) (data request.ReqProfile, err error)
+	Filter(nama, norek string) (data []request.ReqProfile, err error)
 }
 
 type ServiceLogin interface {
@@ -15,4 +17,8 @@ type ServiceBank interface {
 }
 type ServiceWallet interface {
 	CreateWallet(newRequest request.RequestWallet, email string) (data request.RequestWallet, err error)
+}
+type ServiceTopUp interface {
+	CreateTopUp(newRequest request.RequestTopUp, email string) (data request.RequestTopUp, err error)
+	CreatePayment(newRequest request.RequestTopUp) (data request.RequestTopUp, err error)
 }

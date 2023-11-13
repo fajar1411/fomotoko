@@ -35,7 +35,7 @@ func (rb *Repobank) CreateBank(newRequest request.RequestBank) (data request.Req
 func (rb *Repobank) IduserExist(iduser int) (data request.RequestBank, err error) {
 	var activ model.Bank
 
-	tx := rb.db.Raw("Select banks.id, banks.no_rekening, banks.nama_bank, bankid_player from banks WHERE banks.id_player= ? ", iduser).First(&activ)
+	tx := rb.db.Raw("Select banks.id, banks.no_rekening, banks.nama_bank, banks.id_player from banks WHERE banks.id_player= ? ", iduser).First(&activ)
 
 	if errors.Is(tx.Error, gorm.ErrRecordNotFound) {
 
@@ -49,7 +49,7 @@ func (rb *Repobank) IduserExist(iduser int) (data request.RequestBank, err error
 func (rb *Repobank) NorekExist(no string) (data request.RequestBank, err error) {
 	var activ model.Bank
 
-	tx := rb.db.Raw("Select banks.id, banks.no_rekening, banks.nama_bank, bankid_player from banks WHERE banks.no_rekening= ? ", no).First(&activ)
+	tx := rb.db.Raw("Select banks.id, banks.no_rekening, banks.nama_bank, banks.id_player from banks WHERE banks.no_rekening= ? ", no).First(&activ)
 
 	if errors.Is(tx.Error, gorm.ErrRecordNotFound) {
 

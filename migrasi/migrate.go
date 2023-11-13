@@ -11,4 +11,5 @@ func MigrateDB(db *gorm.DB) {
 	db.AutoMigrate(&model.Bank{})
 	db.AutoMigrate(&model.TopUp{})
 	db.AutoMigrate(&model.Wallet{})
+	// db.AutoMigrate(&model.Transaction{})
 }
