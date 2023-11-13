@@ -9,6 +9,7 @@ import (
 	"test/domain/query"
 	"test/domain/request"
 	"test/helper"
+	"test/middlewares"
 	"test/redist"
 
 	echo "github.com/labstack/echo/v4"
@@ -68,5 +69,36 @@ func (hc *HandlerUser) AllUser(e echo.Context) error {
 	respondata := query.ListrequserToRes(dataservice)
 
 	return e.JSON(http.StatusCreated, helper.GetResponse(respondata, http.StatusCreated, false))
+
+}
+
+func (hu *HandlerUser) Player(e echo.Context) error {
+	id := middlewares.ExtractTokenId(e)
+
+	if id <= 0 {
+		return e.JSON(http.StatusUnauthorized, helper.GetResponse("id tidak ada", http.StatusUnauthorized, true))
+
+	}
+	dataservice, errservice := hu.um.Player(id)
+
+	if errservice != nil {
+		return e.JSON(http.StatusInternalServerError, helper.GetResponse(http.StatusInternalServerError, http.StatusInternalServerError, true))
+	}
+	respon := query.ReqProfiletores(dataservice)
+	return e.JSON(http.StatusOK, helper.GetResponse(respon, http.StatusOK, true))
+}
+
+// Filter implements handlecontract.HandleUser.
+func (hu *HandlerUser) Filter(e echo.Context) error {
+	nama := e.QueryParam("nama")
+	norek := e.QueryParam("norek")
+
+	dataservice, errservice := hu.um.Filter(nama, norek)
+
+	if errservice != nil {
+		return e.JSON(http.StatusInternalServerError, helper.GetResponse(http.StatusInternalServerError, http.StatusInternalServerError, true))
+	}
+	respon := query.FilterequserToRes(dataservice)
+	return e.JSON(http.StatusOK, helper.GetResponse(respon, http.StatusOK, true))
 
 }

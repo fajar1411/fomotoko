@@ -5,6 +5,8 @@ import "test/domain/request"
 type ServiceCase interface {
 	RegisterUser(newRequest request.RequestUser) (data request.RequestUser, err error)
 	AllUser() (data []request.RequestUser, err error)
+	Player(id int) (data request.ReqProfile, err error)
+	Filter(nama, norek string) (data []request.ReqProfile, err error)
 }
 
 type ServiceLogin interface {

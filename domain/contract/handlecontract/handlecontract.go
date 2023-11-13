@@ -5,6 +5,8 @@ import "github.com/labstack/echo/v4"
 type HandleUser interface {
 	RegisterUser(e echo.Context) error
 	AllUser(e echo.Context) error
+	Player(e echo.Context) error
+	Filter(e echo.Context) error
 }
 
 type HandleLogin interface {

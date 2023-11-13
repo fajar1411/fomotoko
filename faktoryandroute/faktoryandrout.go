@@ -33,6 +33,8 @@ func FaktoryAndRoute(e *echo.Echo, db *gorm.DB) {
 	usergrup := e.Group("/player")
 	usergrup.POST("/register", hndlmhs.RegisterUser)
 	usergrup.GET("", hndlmhs.AllUser)
+	usergrup.GET("/profile", hndlmhs.Player, middlewares.JWTMiddleware())
+	usergrup.GET("/filterlist", hndlmhs.Filter)
 
 	rpl := rl.NewRepoLogin(db)
 	servicelogin := ls.NewServiceLogin(rpl, rpm)

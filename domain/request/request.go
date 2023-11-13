@@ -35,12 +35,21 @@ type RequestTopUp struct {
 	UpdateSaldo   float64
 }
 type RequestUserDanwallet struct {
-	Id          int
-	Password    string `json:"password" form:"password" validate:"required,min=5"`
-	Email       string `json:"email" form:"email" validate:"required,email"`
-	Name        string `json:"nama" form:"nama" validate:"required,min=5"`
-	Nama_dompet string `json:"nama_dompet" form:"nama_dompet"`
-
+	Id            int
+	Password      string `json:"password" form:"password" validate:"required,min=5"`
+	Email         string `json:"email" form:"email" validate:"required,email"`
+	Name          string `json:"nama" form:"nama" validate:"required,min=5"`
+	Nama_dompet   string `json:"nama_dompet" form:"nama_dompet"`
 	AccountWallet string
 	Saldo         float64 `json:"saldo" form:"saldo"`
+}
+
+type ReqProfile struct {
+	IdUser        uint
+	Email         string
+	Nama          string
+	NamaDompet    string
+	AccountWallet string
+	Saldo         float64
+	NoRekening    string
 }

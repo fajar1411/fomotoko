@@ -176,3 +176,37 @@ func Reqwalletanduser(data request.RequestUserDanwallet) request.RequestUser {
 		Saldo:         data.Saldo,
 	}
 }
+func ModelProfiletoReqprofile(data model.Profile) request.ReqProfile {
+	return request.ReqProfile{
+		IdUser:        data.ID,
+		Email:         data.Email,
+		Nama:          data.Nama,
+		NamaDompet:    data.NamaDompet,
+		AccountWallet: data.AccountWallet,
+		Saldo:         data.Saldo,
+		NoRekening:    data.NoRekening,
+	}
+}
+func ReqProfiletores(data request.ReqProfile) respon.ResProfile {
+	return respon.ResProfile{
+		IdUser:        data.IdUser,
+		Email:         data.Email,
+		Nama:          data.Nama,
+		NamaDompet:    data.NamaDompet,
+		AccountWallet: data.AccountWallet,
+		Saldo:         data.Saldo,
+		NoRekening:    data.NoRekening,
+	}
+}
+func FilterequserToRes(data []request.ReqProfile) (datareq []respon.ResProfile) {
+	for _, val := range data {
+		datareq = append(datareq, ReqProfiletores(val))
+	}
+	return datareq
+}
+func FiltemodeluserToReq(data []model.Profile) (datareq []request.ReqProfile) {
+	for _, val := range data {
+		datareq = append(datareq, ModelProfiletoReqprofile(val))
+	}
+	return datareq
+}

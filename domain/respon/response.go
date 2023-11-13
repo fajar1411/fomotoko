@@ -43,3 +43,13 @@ type Responuserandwallet struct {
 	AccountWallet string  `json:"akun_wallet"`
 	Saldo         float64 `json:"amount"`
 }
+
+type ResProfile struct {
+	IdUser        uint    `json:"id"`
+	Email         string  `json:"email"`
+	Nama          string  `json:"nama_player"`
+	NamaDompet    string  `json:"nama_dompet"`
+	AccountWallet string  `json:"akunwallet"`
+	Saldo         float64 `json:"saldo"`
+	NoRekening    string  `json:"nomor_rekening_bank"`
+}

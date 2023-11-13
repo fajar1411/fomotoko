@@ -41,3 +41,12 @@ type TopUp struct {
 	TransactionId  string
 	IdUser         uint
 }
+type Profile struct {
+	ID            uint
+	Email         string
+	Nama          string
+	NamaDompet    string
+	AccountWallet string
+	Saldo         float64
+	NoRekening    string
+}
